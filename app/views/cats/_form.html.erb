@@ -1,0 +1,45 @@
+<% _action = cat.persisted? ? cat_url(cat) : cats_url %>
+<% _verb = cat.persisted? ? "PATCH" : "POST" %>
+
+<form action="<%=_action %>" method="post">
+<input type="hidden" name="_method" value="<%= _verb%>">
+  <label> Name:
+    <input type="text" name="cat[name]" value=<%=cat && cat.name%>>
+  </label>
+  <br>
+
+  <label>
+    <input type="radio" name="cat[sex]" value="F" <%= "checked=true" if cat.sex == "F" %> > Female
+  </label>
+  <label>
+    <input type="radio" name="cat[sex]" value="M" <%= "checked=true" if cat.sex == "M" %> > Male
+  </label>
+  <br>
+
+  <label>
+    <select name="cat[color]" id="cat_coat_color">
+      <option value="Select a color" disabled=true >Select a Color</option>
+      <option value="black" <%= "selected=true" if cat.color == "black" %> >Black</option>
+      <option value="brown" <%= "selected=true" if cat.color == "brown"%> >Brown</option>
+      <option value="white" <%= "selected=true" if cat.color == "white"%> >White</option>
+      <option value="calico" <%= "selected=true" if cat.color == "calico"%> >Calico</option>
+      <option value="gray" <%= "selected=true" if cat.color == "gray"%> >Gray</option>
+      <option value="tan" <%= "selected=true" if cat.color == "tan"%> >Tan</option>
+      <option value="orange" <%= "selected=true" if cat.color == "orange"%> >Orange</option>
+      <option value="rainbow"<%= "selected=true" if cat.color == "rainbow"%> >Rainbow</option>
+    </select>
+  </label>
+  <br>
+
+  <label> Birthday
+    <input type="date" name="cat[birth_date]" value="<%= cat.birth_date %>">
+  </label>
+  <br>
+
+  <label> Description
+    <br>
+    <textarea name="cat[description]" cols="30" rows="30"><%= cat.description %></textarea>
+  </label>
+
+  <input type="submit" value="Create cat">
+</form>
